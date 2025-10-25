@@ -21,7 +21,6 @@ if(YQUAKE2LIBS)
 	endif()
 
     set(ENV{OPENALDIR} ${YQUAKE2LIBS})
-    # Prefer SDL3, do not advertise SDL2 locations to avoid accidental SDL2 picks
 endif()
 
 # Add extended path for FreeBSD and Homebrew on OS X.

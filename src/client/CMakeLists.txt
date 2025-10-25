@@ -110,7 +110,7 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	add_executable(yquake2 WIN32 ${Client-Source} ${Client-SDL-Source} ${Client-Header}
 			${Platform-Specific-Source} ${Backends-Generic-Source})
 	set_target_properties(yquake2 PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
+			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 	)
     target_link_libraries(yquake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
             ${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags} ws2_32 winmm SDL3::SDL3)
@@ -125,12 +125,12 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 		${BACKENDS_SRC_DIR}/windows/icon.rc
 	)
 	add_executable(quake2 WIN32 ${Wrapper-Source})
-	set_target_properties(quake2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release)
+	set_target_properties(quake2 PROPERTIES RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin)
 else()
 	add_executable(quake2 ${Client-Source} ${Client-SDL-Source} ${Client-Header}
 			${Platform-Specific-Source} ${Backends-Generic-Source})
 	set_target_properties(quake2 PROPERTIES
-			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
+			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 	)
     target_link_libraries(quake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
         ${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags} SDL3::SDL3)

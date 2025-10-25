@@ -47,8 +47,8 @@ set(Glad-GL3-Header
 add_library(ref_gl3 MODULE ${GL3-Source} ${Glad-GL3-Source} ${GL3-Header} ${Glad-GL3-Header} ${REF-Platform-Specific-Source})
 set_target_properties(ref_gl3 PROPERTIES
 		PREFIX ""
-		LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
-		RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
+		LIBRARY_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
+		RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/bin
 		SUFFIX ${CMAKE_SHARED_LIBRARY_SUFFIX}
 )
 target_include_directories(ref_gl3 PRIVATE ${CMAKE_SOURCE_DIR}/src/client/refresh/gl3/glad/include)
