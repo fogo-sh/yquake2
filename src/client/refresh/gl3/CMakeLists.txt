@@ -53,8 +53,4 @@ set_target_properties(ref_gl3 PROPERTIES
 )
 target_include_directories(ref_gl3 PRIVATE ${CMAKE_SOURCE_DIR}/src/client/refresh/gl3/glad/include)
 target_link_libraries(ref_gl3 ${yquake2LinkerFlags} ${yquake2SDLLinkerFlags})
-if(SDL3_SUPPORT)
-	target_link_libraries(ref_gl3 SDL3::SDL3)
-endif()
-
-
+target_link_libraries(ref_gl3 SDL3::SDL3)

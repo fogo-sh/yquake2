@@ -67,17 +67,10 @@ set(Client-Source
 	${SERVER_SRC_DIR}/sv_world.c
 )
 
-if(SDL3_SUPPORT)
-	set(Client-SDL-Source
-		${CLIENT_SRC_DIR}/input/sdl3.c
-		${CLIENT_SRC_DIR}/vid/glimp_sdl3.c
-	)
-else()
-	set(Client-SDL-Source
-		${CLIENT_SRC_DIR}/input/sdl2.c
-		${CLIENT_SRC_DIR}/vid/glimp_sdl2.c
-	)
-endif()
+set(Client-SDL-Source
+    ${CLIENT_SRC_DIR}/input/sdl3.c
+    ${CLIENT_SRC_DIR}/vid/glimp_sdl3.c
+)
 
 set(Client-Header
 	${CLIENT_SRC_DIR}/header/client.h
@@ -119,11 +112,8 @@ if(${CMAKE_SYSTEM_NAME} MATCHES "Windows")
 	set_target_properties(yquake2 PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
 	)
-	target_link_libraries(yquake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
-			${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags} ws2_32 winmm)
-	if(SDL3_SUPPORT)
-		target_link_libraries(yquake2 SDL3::SDL3)
-	endif()
+    target_link_libraries(yquake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
+            ${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags} ws2_32 winmm SDL3::SDL3)
 
 	if(MSVC AND CMAKE_MAJOR_VERSION GREATER 3 OR ( CMAKE_MAJOR_VERSION EQUAL 3 AND CMAKE_MINOR_VERSION GREATER_EQUAL 6 ))
 		set_property(DIRECTORY ${CMAKE_CURRENT_SOURCE_DIR} PROPERTY VS_STARTUP_PROJECT yquake2)
@@ -142,11 +132,8 @@ else()
 	set_target_properties(quake2 PROPERTIES
 			RUNTIME_OUTPUT_DIRECTORY ${CMAKE_BINARY_DIR}/release
 	)
-	target_link_libraries(quake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
-		${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags})
-	if(SDL3_SUPPORT)
-		target_link_libraries(quake2 SDL3::SDL3)
-	endif()
+    target_link_libraries(quake2 ${yquake2LinkerFlags} ${yquake2ClientLinkerFlags}
+        ${yquake2SDLLinkerFlags} ${yquake2ZLibLinkerFlags} SDL3::SDL3)
 endif()
 
 

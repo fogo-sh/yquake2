@@ -20,8 +20,8 @@ if(YQUAKE2LIBS)
 		set(ENV{CMAKE_PREFIX_PATH} ${YQUAKE2LIBS})
 	endif()
 
-	set(ENV{OPENALDIR} ${YQUAKE2LIBS})
-	set(ENV{SDL2DIR} ${YQUAKE2LIBS})
+    set(ENV{OPENALDIR} ${YQUAKE2LIBS})
+    # Prefer SDL3, do not advertise SDL2 locations to avoid accidental SDL2 picks
 endif()
 
 # Add extended path for FreeBSD and Homebrew on OS X.
@@ -61,7 +61,6 @@ endif()
 option(CURL_SUPPORT "cURL support" ON)
 option(OPENAL_SUPPORT "OpenAL support" ON)
 option(SYSTEMWIDE_SUPPORT "Enable systemwide installation of game assets" OFF)
-option(SDL3_SUPPORT "Build against SDL 3 instead of SDL2" ON)
 option(GL3_RENDERER "Build the GL3 renderer" ON)
 
 set(SYSTEMDIR "" CACHE STRING "Override the system default directory")
@@ -178,15 +177,8 @@ endif()
 # Required libraries to build the different components of the binaries. Find
 # them and add the include/linker directories and flags (in case the package
 # manager find it in a weird place).
-if (SDL3_SUPPORT)
-	find_package(SDL3 REQUIRED)
-	add_definitions(-DUSE_SDL3)
-else()
-	find_package(SDL2 REQUIRED)
-	list(APPEND yquake2IncludeDirectories "${SDL2_INCLUDE_DIR}/..")
-	list(APPEND yquake2SDLLinkerFlags ${SDL2_LIBRARY})
-endif()
-
+find_package(SDL3 REQUIRED)
+add_definitions(-DUSE_SDL3)
 
 # backtrace lookup
 # Some systems like Linux has it within the libc some like the BSD, Haiku ...
