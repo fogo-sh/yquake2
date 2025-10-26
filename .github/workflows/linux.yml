@@ -1,5 +1,5 @@
 name: Linux build
-run-name: testbuild_linux_${{ matrix.arch }}
+run-name: testbuild_linux
 on:
   push:
     branches:
@@ -15,6 +15,7 @@ concurrency:
   cancel-in-progress: true
 jobs:
   build_linux:
+    name: Linux (${{ matrix.arch }})
     runs-on: ${{ matrix.runs_on }}
     permissions:
       actions: read
