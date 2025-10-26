@@ -23,8 +23,13 @@ if(YQUAKE2LIBS)
     set(ENV{OPENALDIR} ${YQUAKE2LIBS})
 endif()
 
-# Add extended path for FreeBSD and Homebrew on OS X.
+# Add extended path for homebrew on macOS.
 list(APPEND CMAKE_PREFIX_PATH /usr/local)
+if(${CMAKE_SYSTEM_NAME} MATCHES "Darwin")
+    # Prefer homebrew-provided packages over system ones
+    set(CMAKE_FIND_FRAMEWORK LAST)
+    list(APPEND CMAKE_PREFIX_PATH /opt/homebrew /usr/local /opt/local /opt/homebrew/opt/openal-soft /usr/local/opt/openal-soft)
+endif()
 
 if (MSVC)
 	add_compile_options(/MP) # parallel build (use all cores, or as many as configured in VS)
