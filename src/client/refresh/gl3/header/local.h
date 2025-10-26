@@ -44,13 +44,7 @@
 
 #else
 
-#ifdef YQ2_GL3_GLES3
-  #include "../glad-gles3/include/glad/glad.h"
-  // yes, this is a bit hacky, but it works :-P
-  #define glDepthRange glDepthRangef
-#else // desktop GL3
-  #include "../glad/include/glad/glad.h"
-#endif
+#include "../glad/include/glad/glad.h"
 
 #endif
 
